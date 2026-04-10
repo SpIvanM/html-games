@@ -1,0 +1,75 @@
+﻿/* General page setup */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #E0F7FA; /* Light sky blue */
+    /* Replace the cursor with a custom SVG cartoon mouse. */
+    /* The hotspot is set to (48, 6), the tip of the mouse's nose. */
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg transform='translate(0, -6)'%3E%3Cpath d='M48 84 C 60 96, 78 96, 84 72' stroke='%239E9E9E' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='27' r='12' fill='%23BDBDBD' stroke='%23424242' stroke-width='4.5'/%3E%3Ccircle cx='72' cy='27' r='12' fill='%23BDBDBD' stroke='%23424242' stroke-width='4.5'/%3E%3Cpath d='M48,6 C18,6 18,66 48,84 C78,66 78,6 48,6 Z' fill='%23BDBDBD' stroke='%23424242' stroke-width='4.5'/%3E%3Ccircle cx='36' cy='36' r='4' fill='%23424242'/%3E%3Ccircle cx='60' cy='36' r='4' fill='%23424242'/%3E%3Ccircle cx='48' cy='12' r='6' fill='%23424242'/%3E%3C/g%3E%3C/svg%3E") 48 6, auto;
+}
+
+/* Container to center the SVG */
+.svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#kitten {
+    width: 80vmin; /* Use viewport units to scale nicely */
+    height: 80vmin;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+/* Kitten part styles */
+.head {
+    fill: #E0E0E0; /* Light warm gray */
+    stroke: #424242; /* Dark gray */
+    stroke-width: 4;
+}
+
+.ear {
+    fill: #E0E0E0; /* Light warm gray */
+    stroke: #424242; /* Dark gray */
+    stroke-width: 4;
+}
+
+.sclera {
+    fill: #FFFFFF; /* White */
+}
+
+.iris {
+    fill: #66BB6A; /* Vibrant green */
+}
+
+.pupil {
+    fill: #000000; /* Black */
+}
+
+.highlight {
+    fill: #FFFFFF; /* White */
+}
+
+.nose {
+    fill: #F48FB1; /* Gentle pink */
+}
+
+.mouth {
+    fill: none;
+    stroke: #424242; /* Dark gray */
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.whiskers {
+    fill: none;
+    stroke: #424242; /* Dark gray */
+    stroke-width: 2;
+    stroke-linecap: round;
+}

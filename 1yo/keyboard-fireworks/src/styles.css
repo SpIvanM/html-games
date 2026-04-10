@@ -1,0 +1,305 @@
+/*
+ * Name: Toddler Game Styles
+ * Description: Defines the full-screen visual theme, launch overlay, animated ambience, and DOM-based effect presentation for the toddler keyboard fireworks app.
+ */
+:root {
+  color-scheme: only light;
+  --bg-deep: #07111f;
+  --bg-mid: #10345a;
+  --bg-bright: #24c4c0;
+  --card: rgba(255, 252, 244, 0.84);
+  --card-border: rgba(255, 255, 255, 0.62);
+  --ink: #10233f;
+  --ink-soft: rgba(16, 35, 63, 0.7);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+
+body {
+  font-family: 'Trebuchet MS', 'Segoe UI Rounded', 'Arial Rounded MT Bold', sans-serif;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.game-shell {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 214, 92, 0.92), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(255, 118, 79, 0.7), transparent 24%),
+    radial-gradient(circle at 56% 82%, rgba(85, 233, 216, 0.45), transparent 28%),
+    linear-gradient(160deg, #07203c 0%, #0d3f6d 42%, #14608e 100%);
+  isolation: isolate;
+}
+
+.game-shell::before,
+.game-shell::after {
+  content: '';
+  position: absolute;
+  inset: auto;
+  border-radius: 999px;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(8px);
+}
+
+.game-shell::before {
+  width: 42vw;
+  height: 42vw;
+  min-width: 18rem;
+  min-height: 18rem;
+  left: -8vw;
+  bottom: -10vw;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0));
+}
+
+.game-shell::after {
+  width: 36vw;
+  height: 36vw;
+  min-width: 16rem;
+  min-height: 16rem;
+  right: -6vw;
+  top: -8vw;
+  background: radial-gradient(circle, rgba(112, 255, 224, 0.26), rgba(112, 255, 224, 0));
+}
+
+.game-stage {
+  position: absolute;
+  inset: 0;
+  outline: none;
+  cursor: default;
+}
+
+.effects-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient {
+  position: absolute;
+  inset: auto;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0.75;
+  filter: blur(4px);
+}
+
+.ambient--sun {
+  width: min(52vw, 28rem);
+  height: min(52vw, 28rem);
+  left: 5vw;
+  top: 8vh;
+  background: radial-gradient(circle, rgba(255, 251, 209, 0.92) 0%, rgba(255, 204, 88, 0.5) 35%, rgba(255, 204, 88, 0) 70%);
+  animation: float-orb 12s ease-in-out infinite;
+}
+
+.ambient--sea {
+  width: min(44vw, 24rem);
+  height: min(44vw, 24rem);
+  right: 8vw;
+  bottom: 10vh;
+  background: radial-gradient(circle, rgba(112, 255, 224, 0.6) 0%, rgba(41, 194, 233, 0.28) 40%, rgba(41, 194, 233, 0) 72%);
+  animation: float-orb 15s ease-in-out infinite reverse;
+}
+
+.ambient--confetti {
+  inset: 10% 8% auto auto;
+  width: 12rem;
+  height: 12rem;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 92, 138, 0.95) 0 7%, transparent 8%),
+    radial-gradient(circle at 78% 24%, rgba(255, 227, 117, 0.9) 0 7%, transparent 8%),
+    radial-gradient(circle at 52% 72%, rgba(84, 235, 216, 0.92) 0 7%, transparent 8%),
+    radial-gradient(circle at 26% 76%, rgba(255, 255, 255, 0.9) 0 6%, transparent 7%);
+  animation: drift-confetti 18s linear infinite;
+}
+
+.launch-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(180deg, rgba(8, 18, 32, 0.15), rgba(8, 18, 32, 0.45));
+  backdrop-filter: blur(10px);
+  z-index: 30;
+}
+
+.launch-card {
+  max-width: min(38rem, 100%);
+  padding: clamp(1.5rem, 4vw, 2.4rem);
+  border-radius: 2rem;
+  border: 1px solid var(--card-border);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(255, 244, 220, 0.88));
+  box-shadow: 0 1.2rem 3rem rgba(4, 15, 31, 0.2);
+  text-align: center;
+  color: var(--ink);
+}
+
+.launch-eyebrow {
+  margin: 0 0 0.7rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(221, 91, 56, 0.9);
+}
+
+.launch-card h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 0.96;
+}
+
+.launch-card p:last-child {
+  margin: 1rem auto 0;
+  max-width: 28rem;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.effect {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+}
+
+.effect__aura,
+.effect__burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.effect__aura {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, var(--effect-glow) 34%, rgba(255, 255, 255, 0) 74%);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+}
+
+.effect__burst {
+  border: 0.24rem solid rgba(255, 255, 255, 0.48);
+  box-shadow: 0 0 1.6rem var(--effect-accent), inset 0 0 1rem rgba(255, 255, 255, 0.4);
+}
+
+.effect__label {
+  position: relative;
+  z-index: 3;
+  padding: 0.2em 0.28em;
+  font-size: clamp(3.8rem, 11vw, 9rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: white;
+  text-shadow:
+    0 0 1rem rgba(255, 255, 255, 0.7),
+    0 0 2rem var(--effect-glow),
+    0.08em 0.08em 0 rgba(10, 24, 44, 0.14);
+}
+
+.effect__label::before {
+  content: attr(data-shadow);
+  position: absolute;
+  inset: 0;
+  color: var(--effect-main);
+  z-index: -1;
+  transform: translate(0.04em, 0.04em);
+  filter: blur(0.16rem);
+}
+
+.effect__particles {
+  position: absolute;
+  inset: 0;
+}
+
+.effect__particle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.82rem;
+  height: 0.82rem;
+  margin-left: -0.41rem;
+  margin-top: -0.41rem;
+  border-radius: 999px;
+  background: var(--particle-color);
+  box-shadow: 0 0 1rem var(--particle-glow);
+}
+
+.effect--rabbit-hop .effect__label {
+  text-shadow:
+    0 0 1rem rgba(255, 255, 255, 0.8),
+    0 0 2.2rem var(--effect-glow),
+    0.1em 0.14em 0 rgba(12, 22, 38, 0.16);
+}
+
+.effect--spin-orbit .effect__burst {
+  border-style: dashed;
+}
+
+.effect--wall-bounce .effect__label {
+  letter-spacing: 0.12em;
+}
+
+.effect--pulse-burst .effect__aura {
+  filter: blur(14px);
+}
+
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -2.4vh, 0) scale(1.06);
+  }
+}
+
+@keyframes drift-confetti {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-8vw, 6vh, 0) rotate(180deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .launch-card {
+    border-radius: 1.5rem;
+  }
+
+  .effect__aura,
+  .effect__burst {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+}

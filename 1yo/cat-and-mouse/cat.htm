@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitten Watcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="svg-container">
+        <svg id="kitten" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Group for easier centering if needed -->
+            <g id="kitten-face">
+                <!-- Ears -->
+                <path d="M 125,120 Q 150,40 175,120 Z" class="ear" />
+                <path d="M 275,120 Q 250,40 225,120 Z" class="ear" />
+
+                <!-- Head -->
+                <circle cx="200" cy="200" r="100" class="head" />
+
+                <!-- Eyes -->
+                <g id="left-eye">
+                    <circle cx="160" cy="185" r="25" class="sclera" />
+                    <circle cx="160" cy="185" r="22" class="iris" />
+                    <g id="pupil-left">
+                        <circle cx="160" cy="185" r="12" class="pupil" />
+                    </g>
+                    <circle cx="168" cy="177" r="5" class="highlight" />
+                </g>
+                <g id="right-eye">
+                    <circle cx="240" cy="185" r="25" class="sclera" />
+                    <circle cx="240" cy="185" r="22" class="iris" />
+                    <g id="pupil-right">
+                        <circle cx="240" cy="185" r="12" class="pupil" />
+                    </g>
+                    <circle cx="248" cy="177" r="5" class="highlight" />
+                </g>
+
+                <!-- Nose -->
+                <path d="M 190,210 Q 200,225 210,210 Q 200,215 190,210 Z" class="nose" />
+
+                <!-- Mouth -->
+                <path d="M 185,230 Q 200,240 215,230" class="mouth" />
+
+                <!-- Whiskers -->
+                <g class="whiskers">
+                    <!-- Left Whiskers -->
+                    <path d="M 140,210 L 100,200" />
+                    <path d="M 140,215 L 100,215" />
+                    <path d="M 140,220 L 100,230" />
+                    <!-- Right Whiskers -->
+                    <path d="M 260,210 L 300,200" />
+                    <path d="M 260,215 L 300,215" />
+                    <path d="M 260,220 L 300,230" />
+                </g>
+            </g>
+        </svg>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

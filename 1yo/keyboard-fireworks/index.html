@@ -1,0 +1,33 @@
+<!--
+Name: Toddler Keyboard Game Page
+Description: Hosts the full-screen toddler keyboard fireworks experience. Loads the static game shell, overlays, and browser-only JavaScript modules that animate key presses.
+-->
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Клавиши-фейерверки</title>
+    <link rel="stylesheet" href="./src/styles.css">
+  </head>
+  <body>
+    <main class="game-shell" data-testid="game-root" data-armed="false" data-focused="true" data-active-effects="0">
+      <section id="stage" class="game-stage" aria-label="Детская игра с клавиатурой" tabindex="0">
+        <div class="ambient ambient--sun"></div>
+        <div class="ambient ambient--sea"></div>
+        <div class="ambient ambient--confetti"></div>
+        <div id="effects-layer" class="effects-layer" aria-hidden="true"></div>
+      </section>
+
+      <section id="launch-overlay" class="launch-overlay" data-testid="launch-overlay">
+        <div class="launch-card">
+          <p class="launch-eyebrow">Клавиши-фейерверки</p>
+          <h1 id="overlay-title">Нажмите любую клавишу</h1>
+          <p id="overlay-copy">Все клавиши превращаются в яркие вспышки и буквы. F11 оставлена для выхода из полноэкранного режима.</p>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+# Name: Workspace Git Ignore
+# Description: Standard ignore rules for the HTML Games collection.
+
+# Dependencies
+node_modules/
+dist/
+
+# Testing
+coverage/
+test-results/
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+*.log
