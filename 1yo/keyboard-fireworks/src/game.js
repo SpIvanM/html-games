@@ -14,6 +14,7 @@ export class ToddlerFireworksGame {
     this.overlayTitle = overlayTitle;
     this.overlayCopy = overlayCopy;
     this.effects = new Map();
+    this.lastKey = null;
     this.bounds = { width: window.innerWidth, height: window.innerHeight };
     this.isArmed = false;
     this.isFocused = document.hasFocus();
@@ -163,13 +164,28 @@ export class ToddlerFireworksGame {
   }
 
   spawnKeyEffect(key, timestamp) {
-    for (const record of this.effects.values()) {
+    let existingRecord = null;
+    let existingId = null;
+
+    for (const [id, record] of this.effects.entries()) {
       if (record.effect.key === key) {
-        return;
+        existingRecord = record;
+        existingId = id;
+        break;
       }
     }
 
-    if (this.effects.size >= 9) {
+    if (existingRecord) {
+      if (this.lastKey === key) {
+        return;
+      }
+      existingRecord.elements.root.remove();
+      this.effects.delete(existingId);
+    }
+
+    this.lastKey = key;
+
+    if (this.effects.size >= 12) {
       const firstId = this.effects.keys().next().value;
       if (firstId !== undefined) {
         const record = this.effects.get(firstId);

@@ -170,19 +170,19 @@ describe('ToddlerFireworksGame', () => {
     expect(root.dataset.activeEffects).toBe('0');
   });
 
-  it('limits the number of active effects to 9', () => {
+  it('limits the number of active effects to 12', () => {
     const { game, root } = createGame();
     game.attach();
 
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 15; i++) {
       window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Key' + i, bubbles: true, cancelable: true }));
     }
 
-    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(9);
-    expect(root.dataset.activeEffects).toBe('9');
+    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(12);
+    expect(root.dataset.activeEffects).toBe('12');
   });
 
-  it('prevents duplicate effects for the same key', () => {
+  it('ignores consecutive identical key presses', () => {
     const { game, root } = createGame();
     game.attach();
 
@@ -190,6 +190,37 @@ describe('ToddlerFireworksGame', () => {
     window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true, cancelable: true }));
 
     expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(1);
-    expect(root.dataset.activeEffects).toBe('1');
+  });
+
+  it('replaces old effect for a key if pressed non-consecutively', () => {
+    const { game, root } = createGame();
+    game.attach();
+
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'x', bubbles: true, cancelable: true }));
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'y', bubbles: true, cancelable: true }));
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'x', bubbles: true, cancelable: true }));
+
+    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(2);
+    expect(root.dataset.activeEffects).toBe('2');
+  });
+
+  it('allows spawning the same key again after it has expired', () => {
+    const { game } = createGame();
+    game.attach();
+
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true, cancelable: true }));
+    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(1);
+
+    // Immediate second press should be ignored
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true, cancelable: true }));
+    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(1);
+
+    // Wait for it to expire
+    stepFrames(150);
+    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(0);
+
+    // Pressing again should now work
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true, cancelable: true }));
+    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(1);
   });
 });
