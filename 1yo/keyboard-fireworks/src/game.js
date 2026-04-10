@@ -163,6 +163,15 @@ export class ToddlerFireworksGame {
   }
 
   spawnKeyEffect(key, timestamp) {
+    if (this.effects.size >= 9) {
+      const firstId = this.effects.keys().next().value;
+      if (firstId !== undefined) {
+        const record = this.effects.get(firstId);
+        record.elements.root.remove();
+        this.effects.delete(firstId);
+      }
+    }
+
     const effect = spawnEffect(key, timestamp, this.bounds);
     const elements = this.createEffectElements(effect);
     this.effects.set(effect.id, { effect, elements });

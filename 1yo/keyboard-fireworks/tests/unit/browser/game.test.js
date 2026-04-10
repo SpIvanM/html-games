@@ -169,4 +169,27 @@ describe('ToddlerFireworksGame', () => {
     expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(0);
     expect(root.dataset.activeEffects).toBe('0');
   });
+
+  it('limits the number of active effects to 9', () => {
+    const { game, root } = createGame();
+    game.attach();
+
+    for (let i = 0; i < 11; i++) {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Key' + i, bubbles: true, cancelable: true }));
+    }
+
+    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(9);
+    expect(root.dataset.activeEffects).toBe('9');
+  });
+
+  it('prevents duplicate effects for the same key', () => {
+    const { game, root } = createGame();
+    game.attach();
+
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true, cancelable: true }));
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true, cancelable: true }));
+
+    expect(document.querySelectorAll('[data-testid="effect"]').length).toBe(1);
+    expect(root.dataset.activeEffects).toBe('1');
+  });
 });
