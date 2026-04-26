@@ -18,6 +18,11 @@ A fullscreen interactive experience where any key press creates a beautiful fire
 A simple game involving a cat and a mouse.
 - **Status**: Basic implementation.
 
+### [Bubble Pop](1yo/bubble-pop)
+A fun game combining keyboard and mouse interactions.
+- **Goal**: Teach interactions using all mouse buttons, wheel, and keyboard.
+- **Key Features**: Bubbles with letters, popping sounds, and explosions. Build with strict TDD.
+
 ## Tech Stack
 - **Languages**: HTML5, CSS3, JavaScript (ES6+).
 - **Approach**: Static applications with zero runtime dependencies.
